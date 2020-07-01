@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Car {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
@@ -16,7 +17,7 @@ public class Car {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(optional = false, mappedBy = "car")
+    @OneToOne(mappedBy = "car")
     private User user;
 
     public Car() {
@@ -49,5 +50,13 @@ public class Car {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", series=" + series +
+                ", name='" + name + '}';
     }
 }
